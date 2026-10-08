@@ -10,12 +10,30 @@ El coworking ahora acepta reservas desde una plataforma externa (como Airbnb o M
 
 ### Tarea 
 
-1. Crear una tabla ReservasExternas con: id, plataforma, fecha_reserva, espacio_id, usuario_externo, duración.
-2. Escribir un procedimiento sp_importar_reserva_externa que.
-├── Convierta una reserva externa en una reserva interna.
-├── Asigne el espacio correcto.
-├── Genere un usuario temporal si no existe.
-3. Validar que no haya conflictos de horario con reservas existentes.
+**1. Crear la tabla `ReservasExternas`**
+
+La tabla debe contener los siguientes campos:
+
+* `id`
+* `plataforma`
+* `fecha_reserva`
+* `espacio_id`
+* `usuario_externo`
+* `duracion`
+
+**2. Crear el procedimiento almacenado `sp_importar_reserva_externa`**
+
+El procedimiento debe realizar las siguientes operaciones:
+
+* Convertir una reserva externa en una reserva interna.
+* Asignar el espacio correspondiente.
+* Generar un usuario temporal si el usuario no existe.
+
+**3. Validar conflictos de horario**
+
+* Verificar que no existan conflictos de horario con las reservas internas existentes.
+* Evitar que se asignen dos reservas al mismo espacio durante horarios que se superpongan.
+
 
 ### Resultado
 
