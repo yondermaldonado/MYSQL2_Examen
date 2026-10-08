@@ -88,16 +88,17 @@ BEGIN
         SET v_id_usuario = LAST_INSERT_ID();
     END IF;
 
-    -- 8. Crear la reserva interna
+    -- se crear la reserva interna
     INSERT INTO reserva (id_usuario, id_espacio, fecha_inicio, fecha_fin, estado)
     VALUES (v_id_usuario, v_id_espacio, v_fecha_inicio, v_fecha_fin, 'Confirmada');
 
-    -- 9. Devolver el id de la reserva creada
+    -- devuelve el id de la reserva creada
     SET p_reserva_que_se_creo = LAST_INSERT_ID();
 END $$
 
 DELIMITER ;
 
+-- insertamos daticos
 INSERT INTO reservas_externas (plataforma, fecha_reserva, id_espacio, usuario_externo, duracion)
 VALUES
 ('Airbnb', '2026-10-20 09:00:00',  3, 'Carlos Mendoza', 3),
@@ -107,5 +108,6 @@ VALUES
 ('Meetup', '2026-10-12 10:00:00',  7, 'Pedro Ruiz',     2),
 ('Airbnb', '2026-10-24 09:00:00',  6, 'Sofia Torres',   3);
 
-CALL sp_importar_reserva_externa(1, @nueva_reserva);
+-- hacemos una prueba
+CALL sp_importar_reserva_externa(2, @nueva_reserva);
 SELECT @nueva_reserva;
